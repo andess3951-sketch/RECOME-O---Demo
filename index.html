@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#5A8FA3">
+<title>RECOMEÇO — Demo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --blue:#5A8FA3;
+    --green:#7BAE8A;
+    --dark:#29444d;
+    --text:#30464d;
+    --muted:#71848a;
+    --glass:rgba(255,255,255,.72);
+    --border:rgba(255,255,255,.85);
+    --shadow:0 20px 60px rgba(43,75,82,.13);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Poppins,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 15%,rgba(123,174,138,.22),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(90,143,163,.20),transparent 30%),
+        linear-gradient(135deg,#edf5f0,#e4eff1 50%,#edf5ed);
+    overflow-x:hidden;
+}
+
+button,input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+.app{
+    width:min(1100px,100%);
+    margin:auto;
+    padding:20px 18px 125px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.brand{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:var(--dark);
+}
+
+.brand span{
+    color:var(--blue);
+}
+
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.profile-mini-name{
+    font-size:13px;
+    font-weight:600;
+}
+
+.profile-mini-photo{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+    background:#dfeaec;
+}
+
+.workspace{
+    display:grid;
+    grid-template-columns:minmax(0,760px);
+    justify-content:center;
+}
+
+.panel{
+    padding:27px;
+    border-radius:32px;
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    box-shadow:var(--shadow);
+}
+
+.app-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.app-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.app-subtitle{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.icon-button{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    background:rgba(255,255,255,.68);
+    display:grid;
+    place-items:center;
+    color:var(--dark);
+}
+
+.icon-button svg{
+    width:20px;
+    height:20px;
+}
+
+.day-info{
+    margin-bottom:22px;
+}
+
+.day-number{
+    color:var(--blue);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+}
+
+.day-title{
+    margin-top:6px;
+    font-size:26px;
+    font-weight:700;
+}
+
+.cards{
+    display:grid;
+    gap:15px;
+}
+
+.card{
+    padding:21px;
+    border-radius:22px;
+    background:rgba(255,255,255,.60);
+    border:1px solid rgba(255,255,255,.82);
+    box-shadow:0 10px 35px rgba(40,70,78,.07);
+}
+
+.label{
+    font-size:11px;
+    font-weight:700;
+    color:var(--muted);
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+.mission-title{
+    font-size:18px;
+    font-weight:700;
+    line-height:1.5;
+}
+
+.small-text{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+}
+
+.primary{
+    margin-top:15px;
+    padding:14px 19px;
+    border-radius:13px;
+    background:var(--blue);
+    color:white;
+    font-size:11px;
+    font-weight:700;
+}
+
+.primary.success{
+    background:var(--green);
+}
+
+.secondary{
+    padding:12px 17px;
+    border-radius:12px;
+    background:rgba(90,143,163,.1);
+    color:var(--blue);
+    font-size:10px;
+    font-weight:700;
+}
+
+.locked{
+    opacity:.65;
+}
+
+.locked-button{
+    margin-top:15px;
+    padding:14px 19px;
+    border-radius:13px;
+    background:#dbe4e6;
+    color:#71848a;
+    font-size:11px;
+    font-weight:700;
+}
+
+.nav{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+    margin-top:20px;
+    padding:8px;
+    border-radius:22px;
+    background:rgba(255,255,255,.67);
+}
+
+.nav button{
+    min-height:68px;
+    padding:10px 4px;
+    border-radius:15px;
+    background:transparent;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:600;
+}
+
+.nav button.active{
+    background:rgba(90,143,163,.12);
+    color:var(--blue);
+}
+
+.nav svg{
+    width:21px;
+    height:21px;
+    display:block;
+    margin:0 auto 6px;
+}
+
+.quiz-overlay{
+    position:fixed;
+    inset:0;
+    z-index:900;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(35,55,61,.45);
+    backdrop-filter:blur(10px);
+}
+
+.quiz-overlay.show{
+    display:flex;
+}
+
+.quiz-modal{
+    width:min(430px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:28px;
+    border-radius:28px;
+    background:#f8fbfa;
+}
+
+.quiz-modal h2{
+    font-size:22px;
+}
+
+.quiz-modal p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+}
+
+.quiz-step{
+    color:var(--blue);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:7px;
+}
+
+.quiz-options{
+    display:grid;
+    gap:9px;
+    margin-top:18px;
+}
+
+.quiz-option{
+    padding:15px;
+    border-radius:14px;
+    background:white;
+    border:1px solid rgba(90,143,163,.12);
+    text-align:left;
+    font-size:12px;
+    color:var(--text);
+}
+
+.quiz-option:hover{
+    border-color:var(--blue);
+}
+
+.quiz-result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
+    background:rgba(123,174,138,.1);
+    text-align:center;
+}
+
+.quiz-result.show{
+    display:block;
+}
+
+.quiz-score{
+    font-size:40px;
+    font-weight:800;
+    color:var(--green);
+}
+
+.close{
+    margin-top:15px;
+    padding:12px 18px;
+    border-radius:12px;
+    background:rgba(90,143,163,.1);
+    color:var(--blue);
+    font-size:10px;
+    font-weight:700;
+}
+
+.profile-overlay{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(35,58,63,.48);
+    backdrop-filter:blur(14px);
+}
+
+.profile-overlay.hidden{
+    display:none;
+}
+
+.profile-card{
+    width:min(430px,100%);
+    padding:32px 25px;
+    text-align:center;
+    border-radius:30px;
+    background:rgba(249,252,250,.97);
+    box-shadow:0 30px 90px rgba(30,55,60,.25);
+}
+
+.setup-photo{
+    width:125px;
+    height:125px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid white;
+    background:rgba(90,143,163,.1);
+}
+
+.setup-photo img{
+    width:100%;
+    height:100%;
+    display:none;
+    object-fit:cover;
+}
+
+.setup-placeholder{
+    height:100%;
+    display:grid;
+    place-items:center;
+    color:var(--blue);
+}
+
+.setup-placeholder svg{
+    width:45px;
+}
+
+.photo-button{
+    display:inline-block;
+    padding:10px 17px;
+    border-radius:12px;
+    background:rgba(90,143,163,.1);
+    color:var(--blue);
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.profile-card h2{
+    margin-top:21px;
+    font-size:21px;
+}
+
+.profile-card p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.name-input{
+    width:100%;
+    margin-top:18px;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid rgba(90,143,163,.18);
+    background:white;
+    outline:none;
+    font-size:14px;
+    text-align:center;
+}
+
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:88px;
+    z-index:800;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#25D366;
+    color:white;
+    box-shadow:0 12px 30px rgba(37,211,102,.32);
+    animation:whatsPulse 2.1s infinite;
+}
+
+.whatsapp svg{
+    width:29px;
+    height:29px;
+}
+
+@keyframes whatsPulse{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,.42)}
+    70%{box-shadow:0 0 0 13px rgba(37,211,102,0)}
+    100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+
+@media(max-width:650px){
+
+    .app{
+        padding:16px 13px 115px;
+    }
+
+    .brand{
+        font-size:21px;
+    }
+
+    .profile-mini-name{
+        display:none;
+    }
+
+    .panel{
+        padding:18px;
+        border-radius:25px;
+    }
+
+    .day-title{
+        font-size:23px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .mission-title{
+        font-size:17px;
+    }
+
+    .nav{
+        position:relative;
+        bottom:auto;
+        z-index:1;
+    }
+
+    .nav button{
+        min-height:64px;
+        font-size:9px;
+    }
+
+    .whatsapp{
+        right:15px;
+        bottom:86px;
+        width:56px;
+        height:56px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile-overlay" id="profileOverlay">
+
+    <div class="profile-card">
+
+        <div class="setup-photo">
+
+            <img id="setupPreview">
+
+            <div class="setup-placeholder" id="setupPlaceholder">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21a8 8 0 0 1 16 0"/>
+                </svg>
+
+            </div>
+
+        </div>
+
+        <label class="photo-button">
+            ESCOLHER FOTO
+            <input type="file" id="profilePhoto" accept="image/*" hidden>
+        </label>
+
+        <h2>Seu RECOMEÇO começa aqui</h2>
+
+        <p>
+            Escolha sua foto e um apelido para personalizar sua jornada.
+        </p>
+
+        <input
+            id="profileName"
+            class="name-input"
+            maxlength="20"
+            placeholder="Como quer ser chamado?"
+        >
+
+        <button class="primary" onclick="saveProfile()">
+            ENTRAR NO RECOMEÇO
+        </button>
+
+    </div>
+
+</div>
+
+<div class="quiz-overlay" id="quizOverlay">
+
+    <div class="quiz-modal">
+
+        <div class="quiz-step" id="quizStep">
+            CHECK-IN 01 DE 05
+        </div>
+
+        <h2>
+            Vamos entender como está sua energia hoje
+        </h2>
+
+        <p id="quizQuestion"></p>
+
+        <div class="quiz-options" id="quizOptions"></div>
+
+        <div class="quiz-result" id="quizResult">
+
+            <div class="quiz-score" id="quizScore"></div>
+
+            <strong id="quizResultTitle"></strong>
+
+            <p id="quizResultText"></p>
+
+        </div>
+
+        <button class="close" onclick="closeQuiz()">
+            FECHAR
+        </button>
+
+    </div>
+
+</div>
+
+<div class="app">
+
+    <div class="topbar">
+
+        <div class="brand">
+            RECOMEÇO <span>↻</span>
+        </div>
+
+        <div class="profile-mini">
+
+            <span class="profile-mini-name" id="headerName"></span>
+
+            <img class="profile-mini-photo" id="headerPhoto">
+
+        </div>
+
+    </div>
+
+    <div class="workspace">
+
+        <section class="panel">
+
+            <div class="app-header">
+
+                <div>
+                    <div class="app-title">Comece com 10 minutos 🌱</div>
+                    
+                </div>
+
+                <button class="icon-button">
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M10 21h4"/>
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <div class="day-info">
+
+                <div class="day-number">
+                    DIAGNÓSTICO GRATUITO
+                </div>
+
+                <div class="day-title">
+                    Como você está hoje?
+                </div>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="label">
+                        CHECK-IN
+                    </div>
+
+                    <div class="mission-title">
+                        Descubra como está sua energia neste momento.
+                    </div>
+
+                    <div class="small-text">
+                        Responda 5 perguntas rápidas e receba seu resultado.
+                    </div>
+
+                    <button class="primary" onclick="openQuiz()">
+                        FAZER DIAGNÓSTICO
+                    </button>
+
+                </div>
+
+                <div class="card locked">
+
+                    <div class="label">
+                        MISSÕES
+                    </div>
+
+                    <div class="mission-title">
+                        21 dias de pequenas mudanças
+                    </div>
+
+                    <div class="small-text">
+                        Na versão completa você terá uma missão diária durante 21 dias.
+                    </div>
+
+                    <button class="locked-button" onclick="showPro()">
+                        🔒 DISPONÍVEL NA VERSÃO COMPLETA
+                    </button>
+
+                </div>
+
+                <div class="card locked">
+
+                    <div class="label">
+                        DIÁRIO
+                    </div>
+
+                    <div class="mission-title">
+                        Seu espaço para escrever sem julgamentos.
+                    </div>
+
+                    <div class="small-text">
+                        Registre seus pensamentos e acompanhe sua evolução.
+                    </div>
+
+                    <button class="locked-button" onclick="showPro()">
+                        🔒 DISPONÍVEL NA VERSÃO COMPLETA
+                    </button>
+
+                </div>
+
+                <div class="card locked">
+
+                    <div class="label">
+                        EVOLUÇÃO
+                    </div>
+
+                    <div class="mission-title">
+                        Acompanhe seu caminho.
+                    </div>
+
+                    <div class="small-text">
+                        Veja seus dias concluídos, energia e registros.
+                    </div>
+
+                    <button class="locked-button" onclick="showPro()">
+                        🔒 DISPONÍVEL NA VERSÃO COMPLETA
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="label">
+                        RECOMEÇO COMPLETO
+                    </div>
+
+                    <div class="mission-title">
+                        Continue sua jornada por 21 dias.
+                    </div>
+
+                    <div class="small-text">
+                        Tenha acesso às missões, diário, evolução e todas as ferramentas do RECOMEÇO.
+                    </div>
+
+                    <button class="primary" onclick="showPro()">
+                        QUERO A VERSÃO COMPLETA
+                    </button>
+
+                </div>
+
+            </div>
+
+            <nav class="nav">
+
+                <button class="active" onclick="switchTab('hoje')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path d="M4 10.5 12 4l8 6.5"/>
+                        <path d="M6 9.5V20h12V9.5"/>
+                    </svg>
+                    HOJE
+                </button>
+
+                <button onclick="showPro()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path d="M5 5h14v14H5z"/>
+                        <path d="m8 12 2.5 2.5L16 9"/>
+                    </svg>
+                    MISSÕES
+                </button>
+
+                <button onclick="showPro()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path d="M5 5h14v14H5z"/>
+                        <path d="M8 9h8M8 12h8M8 15h5"/>
+                    </svg>
+                    DIÁRIO
+                </button>
+
+                <button onclick="showPro()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path d="M5 18 10 13l3 3 6-8"/>
+                    </svg>
+                    EVOLUÇÃO
+                </button>
+
+                <button onclick="showPro()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <circle cx="12" cy="8" r="3.5"/>
+                        <path d="M5 20a7 7 0 0 1 14 0"/>
+                    </svg>
+                    PERFIL
+                </button>
+
+            </nav>
+
+        </section>
+
+    </div>
+
+</div>
+
+<a
+    class="whatsapp"
+    href="https://wa.me/5511934440141"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+
+    <svg viewBox="0 0 24 24" fill="none">
+
+        <path
+            d="M20.5 11.5a8.4 8.4 0 0 1-12.7 7.2L4 20l1.4-3.7A8.4 8.4 0 1 1 20.5 11.5Z"
+            stroke="currentColor"
+            stroke-width="1.7"
+        />
+
+        <path
+            d="M9 8.5c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c.5 1 1.3 1.8 2.4 2.3l.7-.6c.2-.2.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.5.3-1.1.4-1.7.2-2.1-.5-4-1.8-5.3-3.6-.8-1.1-1.3-2.3-1.4-3.5-.1-.5.1-1 .3-1.3Z"
+            fill="currentColor"
+        />
+
+    </svg>
+
+</a>
+
+<script>
+
+const WHATSAPP_NUMBER = "5511934440141";
+
+const questions = [
+
+    {
+        q:"Como você se sente fisicamente hoje?",
+        options:[
+            ["Muito cansado",20],
+            ["Cansado",40],
+            ["Normal",60],
+            ["Bem",80],
+            ["Muito disposto",100]
+        ]
+    },
+
+    {
+        q:"Como está sua disposição para começar o dia?",
+        options:[
+            ["Não tenho disposição",20],
+            ["Estou com pouca disposição",40],
+            ["Estou razoável",60],
+            ["Estou disposto",80],
+            ["Estou muito disposto",100]
+        ]
+    },
+
+    {
+        q:"Como está sua concentração neste momento?",
+        options:[
+            ["Muito difícil me concentrar",20],
+            ["Tenho bastante dificuldade",40],
+            ["Consigo me concentrar um pouco",60],
+            ["Estou conseguindo me concentrar",80],
+            ["Estou muito concentrado",100]
+        ]
+    },
+
+    {
+        q:"Quanto você sente que consegue realizar hoje?",
+        options:[
+            ["Quase nada",20],
+            ["Poucas coisas",40],
+            ["Algumas tarefas",60],
+            ["Boa parte do que preciso",80],
+            ["Estou pronto para bastante coisa",100]
+        ]
+    },
+
+    {
+        q:"Como está seu nível de cansaço agora?",
+        options:[
+            ["Muito alto",20],
+            ["Alto",40],
+            ["Moderado",60],
+            ["Baixo",80],
+            ["Muito baixo",100]
+        ]
+    }
+
+];
+
+let quizIndex = 0;
+let quizTotal = 0;
+
+function openQuiz(){
+
+    quizIndex = 0;
+    quizTotal = 0;
+
+    document
+        .getElementById("quizOverlay")
+        .classList.add("show");
+
+    document
+        .getElementById("quizResult")
+        .classList.remove("show");
+
+    showQuestion();
+
+}
+
+function showQuestion(){
+
+    const question = questions[quizIndex];
+
+    document.getElementById("quizStep").textContent =
+        "CHECK-IN " +
+        String(quizIndex + 1).padStart(2,"0") +
+        " DE " +
+        questions.length;
+
+    document.getElementById("quizQuestion").textContent =
+        question.q;
+
+    const options =
+        document.getElementById("quizOptions");
+
+    options.innerHTML = "";
+
+    question.options.forEach(option=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className = "quiz-option";
+        button.textContent = option[0];
+
+        button.onclick = ()=>{
+
+            quizTotal += option[1];
+            quizIndex++;
+
+            if(quizIndex < questions.length){
+                showQuestion();
+            }else{
+                finishQuiz();
+            }
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+}
+
+function finishQuiz(){
+
+    const score =
+        Math.round(
+            quizTotal / questions.length
+        );
+
+    document.getElementById("quizOptions").innerHTML = "";
+
+    document.getElementById("quizStep").textContent =
+        "SEU RESULTADO";
+
+    document.getElementById("quizQuestion").textContent =
+        "Este é o seu nível de energia neste momento.";
+
+    document.getElementById("quizScore").textContent =
+        score + "%";
+
+    let title;
+    let text;
+
+    if(score < 40){
+
+        title = "Sua energia está baixa";
+
+        text =
+            "Hoje pode ser importante diminuir a cobrança e começar com pequenas ações.";
+
+    }else if(score < 60){
+
+        title = "Sua energia está abaixo do ideal";
+
+        text =
+            "Você tem espaço para recuperar seu ritmo aos poucos.";
+
+    }else if(score < 80){
+
+        title = "Sua energia está equilibrada";
+
+        text =
+            "Você está em uma faixa intermediária e pode transformar pequenas atitudes em progresso.";
+
+    }else{
+
+        title = "Sua energia está alta";
+
+        text =
+            "Você está começando com uma boa disposição. Aproveite para transformar energia em pequenas conquistas.";
+
+    }
+
+    document.getElementById("quizResultTitle").textContent =
+        title;
+
+    document.getElementById("quizResultText").textContent =
+        text;
+
+    document
+        .getElementById("quizResult")
+        .classList.add("show");
+
+}
+
+function closeQuiz(){
+
+    document
+        .getElementById("quizOverlay")
+        .classList.remove("show");
+
+}
+
+function showPro(){
+
+    alert(
+        "Essa função está disponível na versão completa do RECOMEÇO."
+    );
+
+}
+
+function switchTab(name){
+
+    if(name !== "hoje"){
+        showPro();
+    }
+
+}
+
+function saveProfile(){
+
+    const name =
+        document
+        .getElementById("profileName")
+        .value
+        .trim();
+
+    if(!name){
+
+        alert("Digite um apelido para continuar.");
+        return;
+
+    }
+
+    const file =
+        document
+        .getElementById("profilePhoto")
+        .files[0];
+
+    if(file){
+
+        const reader = new FileReader();
+
+        reader.onload = ()=>{
+            setProfile(name,reader.result);
+        };
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        setProfile(name,"");
+
+    }
+
+}
+
+function setProfile(name,photo){
+
+    localStorage.setItem(
+        "recomeco_profile",
+        JSON.stringify({
+            name:name,
+            photo:photo
+        })
+    );
+
+    loadProfile();
+
+    document
+        .getElementById("profileOverlay")
+        .classList.add("hidden");
+
+}
+
+function loadProfile(){
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem("recomeco_profile") || "null"
+        );
+
+    if(!profile) return;
+
+    document.getElementById("headerName").textContent =
+        profile.name;
+
+    if(profile.photo){
+        document.getElementById("headerPhoto").src =
+            profile.photo;
+    }
+
+}
+
+document
+    .getElementById("profilePhoto")
+    .addEventListener("change",function(){
+
+        const file = this.files[0];
+
+        if(!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = event=>{
+
+            const preview =
+                document.getElementById("setupPreview");
+
+            preview.src = event.target.result;
+            preview.style.display = "block";
+
+            document.getElementById(
+                "setupPlaceholder"
+            ).style.display = "none";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+const savedProfile =
+    localStorage.getItem("recomeco_profile");
+
+if(savedProfile){
+
+    loadProfile();
+
+    document
+        .getElementById("profileOverlay")
+        .classList.add("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
